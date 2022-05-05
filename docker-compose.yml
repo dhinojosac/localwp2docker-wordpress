@@ -3,13 +3,14 @@ version: "3.3"
 services:
   mariadb:
     image: mariadb
-    command: --default-authentication-plugin=mysql_native_password
     volumes:
-      - ./app/sql/local.sql:/docker-entrypoint-initdb.d
+      - ./app/sql:/docker-entrypoint-initdb.d
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: local
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
 
   wordpress:
     depends_on:
@@ -19,10 +20,10 @@ services:
       - "8000:80"
     restart: always
     environment:
-      WORDPRESS_DB_USER: root
-      WORDPRESS_DB_PASSWORD: root
-    links:
-      - mariadb:mysql
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DB_HOST: mariadb
     volumes:
       - ./app/public:/var/www/html
       - ./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
@@ -38,3 +39,5 @@ services:
     environment:
       PMA_HOST: mariadb
       MYSQL_ROOT_PASSWORD: root
+
+
