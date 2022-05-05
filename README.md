@@ -41,4 +41,6 @@ define( 'DB_COLLATE', '' );
 
 3- Go to `app/sql/local.sql` and find&replace your old url with your new url. (e.g. _localhost:8000_ for this docker-compose)
 
+4- Run `docker-compose up `, and you should be able to access your localwp project on your browser (e.g. _localhost:8000_).
+
 
