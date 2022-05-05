@@ -42,8 +42,3 @@ define( 'DB_COLLATE', '' );
 3- Go to `app/sql/local.sql` and find&replace your old url with your new url. (e.g. _localhost:8000_ for this docker-compose)
 
 
-## License
-
-MIT
-
-**Free Software, Hell Yeah!**
